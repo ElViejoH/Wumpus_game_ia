@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hunt the Wumpus IA</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-panel">
+        <div class="title-row">
+          <div>
+            <p class="eyebrow">Simulacion IA</p>
+            <h1>Hunt the Wumpus</h1>
+          </div>
+          <div class="status-pill" id="statusPill">Esperando</div>
+        </div>
+
+        <div class="boards-grid">
+          <article class="board-card">
+            <header class="card-header">
+              <div>
+                <h2>Mundo</h2>
+                <p>Mapa completo: oro, Wumpus, pozos, hedor y brisa.</p>
+              </div>
+              <span class="board-badge">omnisciente</span>
+            </header>
+            <div class="board-frame">
+              <svg id="worldBoard" viewBox="0 0 20 20" role="img" aria-label="Mapa completo del mundo"></svg>
+            </div>
+          </article>
+
+          <article class="board-card">
+            <header class="card-header">
+              <div>
+                <h2>Agente</h2>
+                <p>Conocimiento parcial: visitadas, seguras y sospechas.</p>
+              </div>
+              <span class="board-badge">percepcion</span>
+            </header>
+            <div class="board-frame">
+              <svg id="agentBoard" viewBox="0 0 20 20" role="img" aria-label="Mapa conocido por el agente"></svg>
+            </div>
+          </article>
+        </div>
+
+        <ul class="legend" aria-label="Leyenda">
+          <li><span style="--swatch:#2563eb"></span>Agente</li>
+          <li><span style="--swatch:#facc15"></span>Oro</li>
+          <li><span style="--swatch:#ef4444"></span>Wumpus</li>
+          <li><span style="--swatch:#111827"></span>Pozo</li>
+          <li><span style="--swatch:#38bdf8"></span>Brisa</li>
+          <li><span style="--swatch:#fb923c"></span>Hedor</li>
+          <li><span style="--swatch:#a7f3d0"></span>Seguro</li>
+          <li><span style="--swatch:#fed7aa"></span>Sospecha</li>
+        </ul>
+      </section>
+
+      <aside class="control-panel">
+        <section class="bento-card controls">
+          <div>
+            <p class="eyebrow">Control</p>
+            <h2>Exploracion automatica</h2>
+          </div>
+          <div class="button-row">
+            <button class="secondary" id="newGameBtn">Nuevo juego</button>
+            <button class="primary" id="startBtn">Iniciar</button>
+          </div>
+          <label class="field">
+            Algoritmo
+            <select id="agentSelect">
+              <option value="astar">A* exploratorio</option>
+              <option value="greedy">Voraz exploratorio</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="metrics-grid">
+          <article class="metric-card">
+            <span>Semilla</span>
+            <strong id="seedMetric">--</strong>
+          </article>
+          <article class="metric-card">
+            <span>Pasos</span>
+            <strong id="stepsMetric">0</strong>
+          </article>
+          <article class="metric-card">
+            <span>Posicion</span>
+            <strong id="positionMetric">(0,0)</strong>
+          </article>
+          <article class="metric-card">
+            <span>Percepcion</span>
+            <strong id="perceptMetric">ninguna</strong>
+          </article>
+        </section>
+
+        <section class="bento-card">
+          <p class="eyebrow">Accion actual</p>
+          <p class="current-action" id="actionText">Esperando inicio.</p>
+        </section>
+
+        <section class="bento-card log-card">
+          <div class="log-header">
+            <div>
+              <p class="eyebrow">Registro</p>
+              <h2>Eventos del agente</h2>
+            </div>
+            <button class="ghost" id="clearLogBtn">Limpiar</button>
+          </div>
+          <pre id="eventLog" class="log-output"></pre>
+        </section>
+      </aside>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
